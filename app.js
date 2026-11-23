@@ -194,8 +194,7 @@ function dotTexture() {
   const canvas = document.createElement('canvas');
   canvas.width = canvas.height = 64;
   const ctx = canvas.getContext('2d');
-  ctx.beginPath(); ctx.arc(32, 32, 24, 0, tau); ctx.fillStyle = '#292722'; ctx.fill();
-  ctx.beginPath(); ctx.arc(32, 32, 19, 0, tau); ctx.fillStyle = '#eaaa00'; ctx.fill();
+  ctx.beginPath(); ctx.arc(32, 32, 24, 0, tau); ctx.fillStyle = '#eaaa00'; ctx.fill();
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
   return texture;
@@ -227,7 +226,7 @@ function buildScene() {
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setDrawRange(0, 0);
   const dots = new THREE.Points(geometry, new THREE.PointsMaterial({
-    map: dotTexture(), transparent: true, alphaTest: .12, size: 9.0,
+    map: dotTexture(), transparent: true, alphaTest: .12, size: 5.0,
     sizeAttenuation: false, depthTest: true, depthWrite: false
   }));
   dots.frustumCulled = false;
