@@ -227,7 +227,7 @@ function buildScene() {
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
   geometry.setDrawRange(0, 0);
   const dots = new THREE.Points(geometry, new THREE.PointsMaterial({
-    map: dotTexture(), transparent: true, alphaTest: .12, size: 1.8,
+    map: dotTexture(), transparent: true, alphaTest: .12, size: 3.0,
     sizeAttenuation: false, depthTest: true, depthWrite: false
   }));
   dots.frustumCulled = false;
