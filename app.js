@@ -5,7 +5,7 @@ import {mountOpeningArtwork} from './opening-art.js';
 
 const $ = id => document.getElementById(id);
 const slides = [...document.querySelectorAll('.slide')];
-const slideLabels = ['The consequences', 'What determines them?', 'One breakup', 'What remains unknown?'];
+const slideLabels = ['The consequences', 'What determines them?', 'One breakup', 'What remains unknown?', 'Title reprise'];
 const initialParams = new URLSearchParams(location.search);
 const presentMode = initialParams.get('mode') === 'present';
 if (presentMode) {
@@ -60,12 +60,12 @@ function revealCards() {
 }
 function navigate(n, fromDirection = 0) {
   const previousSlide = slide;
-  slide = Math.max(1, Math.min(slides.length, n));
+  slide = Math.max(1, Math.min(slideLabels.length, n));
   if (slide === 2) factorBeat = fromDirection < 0 ? 2 : 0;
   if (slide === 4) closingBeat = fromDirection < 0 ? 1 : 0;
   revealCards();
   document.body.dataset.slide = String(slide);
-  slides.forEach((el, index) => el.classList.toggle('active', index + 1 === slide));
+  slides.forEach((el, index) => el.classList.toggle('active', index + 1 === slide || (slide === 5 && index === 0)));
   for (const button of $('reviewSteps').children)
     button.setAttribute('aria-current', Number(button.dataset.slide) === slide ? 'step' : 'false');
   if (slide === 3) {
@@ -329,7 +329,7 @@ function tick(timestamp) {
 function commentSlide(item) {
   if (item.slide === 6 || item.slideTitle === 'What remains unknown?') return 4;
   if (item.slide === 4 || item.slide === 5) return 3;
-  return Math.max(1, Math.min(4, item.slide));
+  return Math.max(1, Math.min(5, item.slide));
 }
 const spotAliases = {
   'Altitude choices': 'Altitude selector',
@@ -376,7 +376,7 @@ function setupComments() {
   document.addEventListener('click', event => {
     if (!spotMode) return;
     if (event.target.closest('#reviewBar,#commentsDrawer')) return;
-    const target = event.target.closest('[data-spot]') || slides[slide - 1];
+    const target = event.target.closest('[data-spot]') || slides[slide === 5 ? 0 : slide - 1];
     if (!target) return;
     event.preventDefault(); event.stopPropagation();
     const rect = target.getBoundingClientRect();
@@ -428,7 +428,7 @@ function placePins() {
     if (item.status === 'archived' || commentSlide(item) !== slide) continue;
     const spot = spotAliases[item.element] || item.element;
     const target = [...document.querySelectorAll('[data-spot]')].find(el =>
-      el.dataset.spot === spot && el.getBoundingClientRect().width > 0) || slides[slide - 1];
+      el.dataset.spot === spot && el.getBoundingClientRect().width > 0) || slides[slide === 5 ? 0 : slide - 1];
     const rect = target.getBoundingClientRect();
     if (!rect.width || !rect.height) continue;
     const pin = document.createElement('button');
