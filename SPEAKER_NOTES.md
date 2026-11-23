@@ -4,7 +4,7 @@ These are talking points for the four-slide version. The animation uses the decl
 
 ## 1 · The consequences
 
-A destructive event can impose costs on operators other than the owner of the target. Separate three questions as the talk proceeds: what the breakup creates, how those pieces move and persist, and which spacecraft might be exposed. An altitude overlap chart answers only part of the third question.
+A destructive event can impose costs on operators other than the owner of the target. Separate three questions as the talk proceeds: what the breakup creates, how those pieces move and persist, and which spacecraft might be exposed. The globe shows fragment locations and persistence; it does not calculate spacecraft exposure.
 
 ## 2 · What determines the consequences?
 
@@ -18,7 +18,7 @@ Start at **850 km** and let the automatically looping first two days play. All 6
 
 Switch between **300, 550, and 850 km** at the same elapsed time. The matching sample index has the same ejection impulse and area-to-mass ratio in all three cases. Under this *fixed* atmosphere, many low-altitude samples decay quickly, some at 550 km survive eight years, and all at 850 km survive eight years. These numerical fractions are **not predictions** for a real breakup. The model excludes event-specific fragment distributions, atmospheric variability, spacecraft maneuvers, and collision chains.
 
-The [AGI Indian ASAT Forensics video](https://www.youtube.com/watch?v=KYRHmEF1Azo) and [COMSPOC's Mission Shakti simulation](https://www.comspoc.com/videos/comspoc-simulation-of-mission-shakti-asat-engagement-discrete-fragment-breakup-and-post-fragmentation-debris-cloud-evolution) are independent visual references. [Vallado and Oltrogge (2017)](https://conference.sdo.esoc.esa.int/proceedings/sdc7/paper/738) describe a more complete three-dimensional debris-field evolution and volumetric risk method; they combine breakup distributions with propagation and evaluate satellites potentially put at risk. This slide only visualizes sample propagation and altitude bands.
+The [AGI Indian ASAT Forensics video](https://www.youtube.com/watch?v=KYRHmEF1Azo) and [COMSPOC's Mission Shakti simulation](https://www.comspoc.com/videos/comspoc-simulation-of-mission-shakti-asat-engagement-discrete-fragment-breakup-and-post-fragmentation-debris-cloud-evolution) are independent visual references. [Vallado and Oltrogge (2017)](https://conference.sdo.esoc.esa.int/proceedings/sdc7/paper/738) describe a more complete three-dimensional debris-field evolution and volumetric risk method; they combine breakup distributions with propagation and evaluate satellites potentially put at risk. This slide only visualizes sample propagation at three starting altitudes.
 
 ## 4 · What remains unknown?
 
