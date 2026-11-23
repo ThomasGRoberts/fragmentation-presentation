@@ -55,8 +55,8 @@ async function request(url, body) {
   return result;
 }
 function revealCards() {
-  document.querySelectorAll('.factorGrid .factor').forEach((card, index) => { card.hidden = index !== factorBeat; });
-  document.querySelectorAll('.closingGrid article').forEach((card, index) => { card.hidden = index !== closingBeat; });
+  document.querySelectorAll('.factorGrid .factor').forEach((card, index) => { card.hidden = index > factorBeat; });
+  document.querySelectorAll('.closingGrid article').forEach((card, index) => { card.hidden = index > closingBeat; });
 }
 function navigate(n, fromDirection = 0) {
   const previousSlide = slide;
@@ -280,6 +280,9 @@ function syncTime() {
   ];
   $('timeScale').textContent = phases.find(([limit]) => clockPos < limit)[1];
   $('elapsedTime').textContent = dayText(day);
+  document.querySelectorAll('.timeJump [data-day]').forEach((button, index, buttons) => {
+    button.setAttribute('aria-pressed', String(index === buttons.length - 1 || day < Number(buttons[index + 1].dataset.day) ? day >= Number(button.dataset.day) : false));
+  });
 }
 function setClockPos(value) {
   clockPos = Math.max(0, Math.min(1000, Number(value)));
@@ -300,6 +303,9 @@ function setAltitude(value) {
 function setupPlayback() {
   for (const button of document.querySelectorAll('[data-alt]'))
     button.onclick = () => setAltitude(button.dataset.alt);
+  document.querySelectorAll('.timeJump [data-day]').forEach(button => {
+    button.onclick = () => {endHold = 0; setDay(button.dataset.day);};
+  });
   setAltitude(550); setDay(0);
 }
 function tick(timestamp) {

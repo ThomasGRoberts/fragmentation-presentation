@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Consequences of Destructive Events in Orbit · ESPL</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body class="review" data-slide="1">
 <header id="reviewBar">
@@ -64,19 +64,24 @@
     </div>
   </section>
   <div id="demo" data-spot="Debris cloud demonstration" hidden>
+    <div class="demoGrid">
+      <div id="globePane" data-spot="3D debris globe">
+        <div id="globe3d"></div>
+        <div class="globeControls">
     <div class="demoTop">
       <div class="altitudeSwitch" role="group" aria-label="Choose breakup altitude" data-spot="Altitude selector">
         <button type="button" data-alt="300">300 km</button><button type="button" data-alt="550">550 km</button><button type="button" data-alt="850">850 km</button>
       </div>
     </div>
-    <div class="demoGrid">
-      <div id="globePane" data-spot="3D debris globe">
-        <div id="globe3d"></div>
         <div class="phaseIndicator" data-spot="Debris and time indicator" aria-live="off">
           <span class="phaseLabel">TIME SCALE</span>
           <strong id="timeScale">0–48 HOURS</strong>
           <time id="elapsedTime">Event · 0 h</time>
           <div class="phaseCount"><strong id="survivors">640 / 640</strong><span>sample fragments remain</span></div>
+        </div>
+        <div class="timeJump" role="group" aria-label="Jump to elapsed time" data-spot="Time jumps">
+          <button type="button" data-day="0">EVENT</button><button type="button" data-day="2">2 DAYS</button><button type="button" data-day="30">30 DAYS</button><button type="button" data-day="365">1 YEAR</button><button type="button" data-day="730">2 YEARS</button><button type="button" data-day="2920">8 YEARS</button>
+        </div>
         </div>
       </div>
 
@@ -86,6 +91,6 @@
 <div id="labSignature"><img src="assets/espl-mark.png" alt="Engineering Space Policy Laboratory"></div>
 <aside id="commentsDrawer" hidden><header><strong>Fragmentation carousel comments</strong><button id="closeComments" type="button" aria-label="Close comments">×</button></header><form id="commentForm" hidden><p id="commentLocation"></p><textarea id="commentText" rows="4" maxlength="4000" placeholder="Your feedback" required></textarea><div class="commentActions"><button type="submit">Save comment</button><button id="cancelComment" type="button">Cancel</button></div></form><button id="archivedToggle" type="button" aria-pressed="false">Show archived</button><div id="commentList"></div><button id="downloadComments" type="button">Export comments JSON</button></aside>
 <div id="spotPins"></div><div id="error" hidden></div>
-<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script><script type="module" src="app.js?v=4"></script>
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script><script type="module" src="app.js?v=5"></script>
 </body>
 </html>
