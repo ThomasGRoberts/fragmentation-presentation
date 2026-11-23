@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {feature} from './vendor/topojson/topojson-client.js';
-import {mountOpeningArtwork} from './opening-art.js';
+import {mountOpeningArtwork} from './opening-art.js?v=8';
 
 const $ = id => document.getElementById(id);
 const slides = [...document.querySelectorAll('.slide')];

@@ -40,8 +40,8 @@ export async function mountOpeningArtwork() {
     const dpr=Math.min(devicePixelRatio||1,2),width=Math.round(rect.width*dpr),height=Math.round(rect.height*dpr);
     if(figure.width!==width||figure.height!==height){figure.width=width;figure.height=height}
     const ctx=figure.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,rect.width,rect.height);
-    const x=rect.width*settings.originX/100,y=rect.height*settings.originY/100;
-    const scale=rect.height*(settings.earthSize/100)/906;
+    const x=rect.width*settings.originX/100,y=innerHeight*settings.originY/100-rect.top;
+    const scale=innerHeight*(settings.earthSize/100)/906;
     ctx.drawImage(earth,x-1000*scale,y-1000*scale,2000*scale,2000*scale);
     ctx.fillStyle=color;
     for(let i=0;i<Math.min(settings.satCount,satellites.length);i++){
@@ -83,7 +83,7 @@ export async function mountOpeningArtwork() {
     if(!drag)return;
     const rect=figure.getBoundingClientRect();
     settings.originX=clamp(Math.round(drag.originX+(event.clientX-drag.x)/rect.width*100),0,100);
-    settings.originY=clamp(Math.round(drag.originY+(event.clientY-drag.y)/rect.height*100),0,100);
+    settings.originY=clamp(Math.round(drag.originY+(event.clientY-drag.y)/innerHeight*100),0,100);
     sync();draw();status.textContent='Unsaved artwork changes';
   });
   figure.addEventListener('pointerup',()=>{drag=null});figure.addEventListener('pointercancel',()=>{drag=null});
