@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Consequences of Destructive Events in Orbit · ESPL</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+<body class="review" data-slide="1">
+<header id="reviewBar">
+  <nav id="reviewSteps" aria-label="Slides"></nav>
+  <div class="reviewActions">
+    <button id="spotButton" type="button" aria-pressed="false">✚ Spot comment</button>
+    <button id="commentsButton" type="button">Comments <b id="commentCount">0</b></button>
+    <a href="?mode=present" target="_blank" rel="noopener">Clean presentation ↗</a>
+  </div>
+</header>
+<main id="stage">
+  <section class="slide opening active" data-index="1" data-spot="Opening slide">
+    <div class="openingText" data-spot="Title and question">
+      <span class="eyebrow">Panel discussion</span>
+      <h1>Measuring the Consequence of Fragmentation Events in Orbit</h1>
+      <p>When a satellite is kinetically destroyed, what happens to its fragments and how is risk distributed?</p>
+      
+    </div>
+    <p class="eventMeta">OEWG on PAROS · 23 November 2026</p>
+    <div class="openingFigure" aria-hidden="true"><canvas id="openingArtwork"></canvas></div>
+    <aside id="openingControls" class="openingControls" aria-label="Opening artwork controls" data-spot="Opening artwork controls">
+      <header><strong>Opening artwork</strong><button id="artControlsToggle" type="button" aria-expanded="false">Adjust artwork</button></header>
+      <div id="artControlsBody" hidden>
+        <label>Horizontal position <input data-art="originX" type="range" min="0" max="100" step="1"><output data-art-output="originX"></output></label>
+        <label>Vertical position <input data-art="originY" type="range" min="0" max="100" step="1"><output data-art-output="originY"></output></label>
+        <label>Polyhedron size <input data-art="earthSize" type="range" min="35" max="145" step="1"><output data-art-output="earthSize"></output></label>
+        <label>Visible satellites <input data-art="satCount" type="range" min="0" max="7251" step="1"><output data-art-output="satCount"></output></label>
+        <label>Satellite dot size <input data-art="dotSize" type="range" min="35" max="250" step="5"><output data-art-output="dotSize"></output></label>
+        <button id="saveOpeningArtwork" type="button">Save this composition</button><small id="artStatus" role="status"></small>
+      </div>
+    </aside>
+  </section>
+  <section class="slide factors" data-index="2" data-spot="Three conditions">
+    <div class="slideHeading"><span class="eyebrow">01 · The question</span><h1>What determines the consequences?</h1></div>
+    <div class="factorGrid">
+      <article class="factor" data-spot="Breakup severity"><span>01</span><h2>Breakup severity</h2><p>How many fragments, how are they shaped, and how much change in velocity is imparted on them?</p></article>
+      <article class="factor" data-spot="Orbital altitude"><span>02</span><h2>Orbital altitude</h2><p>How dense is the Earth's atmosphere where debris is orbiting?</p></article>
+      <article class="factor" data-spot="Timing"><span>03</span><h2>Characterization</h2><p>Is the fragmentation event well tracked? Do other satellite operators have time to react?</p></article>
+    </div>
+  </section>
+  <section class="slide setup" data-index="3" data-spot="Three-altitude comparison">
+    <div class="slideHeading">
+      <span class="eyebrow">02 · Controlled comparison</span>
+      <h1>How does altitude affect fragment evolution?</h1>
+    </div>
+    <div class="demoSlot" id="slot3"></div>
+  </section>
+  <section class="slide closing" data-index="4" data-spot="Conclusions and limits">
+    <div class="slideHeading">
+      <span class="eyebrow">03 · The limits</span>
+      <h1>What remains unknown?</h1>
+      <p>Observed breakups and radar surveys leave gaps when we ask what a particular destructive event would do.</p>
+    </div>
+    <div class="closingGrid">
+      <article data-spot="Breakup inputs"><span>01</span><h2>Breakup inputs</h2><p>Fragment count, mass, and ejection speed depend on the target and how it is destroyed. Well-characterized destructive events cover only some of those combinations.</p></article>
+      <article data-spot="Small fragments"><span>02</span><h2>Small fragment tracking</h2><p>Pieces too small to track one by one are estimated from radar samples and size models. Their number and properties remain uncertain.</p></article>
+    </div>
+  </section>
+  <div id="demo" data-spot="Debris cloud demonstration" hidden>
+    <div class="demoTop">
+      <div class="altitudeSwitch" role="group" aria-label="Choose breakup altitude" data-spot="Altitude selector">
+        <button type="button" data-alt="300">300 km</button><button type="button" data-alt="550">550 km</button><button type="button" data-alt="850">850 km</button>
+      </div>
+    </div>
+    <div class="demoGrid">
+      <div id="globePane" data-spot="3D debris globe">
+        <div id="globe3d"></div>
+        <div class="phaseIndicator" data-spot="Debris and time indicator" aria-live="off">
+          <span class="phaseLabel">TIME SCALE</span>
+          <strong id="timeScale">0–48 HOURS</strong>
+          <time id="elapsedTime">Event · 0 h</time>
+          <div class="phaseCount"><strong id="survivors">640 / 640</strong><span>sample fragments remain</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+<div id="labSignature"><img src="assets/espl-mark.png" alt="Engineering Space Policy Laboratory"></div>
+<aside id="commentsDrawer" hidden><header><strong>Fragmentation carousel comments</strong><button id="closeComments" type="button" aria-label="Close comments">×</button></header><form id="commentForm" hidden><p id="commentLocation"></p><textarea id="commentText" rows="4" maxlength="4000" placeholder="Your feedback" required></textarea><div class="commentActions"><button type="submit">Save comment</button><button id="cancelComment" type="button">Cancel</button></div></form><button id="archivedToggle" type="button" aria-pressed="false">Show archived</button><div id="commentList"></div><button id="downloadComments" type="button">Export comments JSON</button></aside>
+<div id="spotPins"></div><div id="error" hidden></div>
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script><script type="module" src="app.js?v=4"></script>
+</body>
+</html>
